@@ -10,11 +10,11 @@ class ResponsiveButton extends StatelessWidget {
   VoidCallback? onTap;
 
   ResponsiveButton({
-    Key? key,
+    super.key,
     this.width = 120,
     this.isResponsive = false,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class ResponsiveButton extends StatelessWidget {
                       child: AppText(
                           text: "Booking Now", color: Colors.white, size: 20),
                     )
-                  : Container(), // Add a semicolon here
+                  : Container(),
             ],
           ),
         ),

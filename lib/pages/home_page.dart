@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travel_app/cubit/app_cubit_states.dart';
 import 'package:travel_app/cubit/app_cubits.dart';
 import 'package:travel_app/misc/colors.dart';
+import 'package:travel_app/widgets/Emotions_Mountains_page.dart';
 import 'package:travel_app/widgets/app_large_text.dart';
 import 'package:travel_app/widgets/app_text.dart';
 import 'package:travel_app/widgets/text_style.dart';
@@ -18,12 +19,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  var images = [
-    "welcome-one.png",
-    "welcome-two.png",
-    "welcome-three.png",
-  ];
-  var images2 = {
+  var images = {
     "balloning.png": "Balloning",
     "hiking.png": "Hiking",
     "kayaking.png": "Kayaking",
@@ -78,10 +74,16 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: TabBar(
-                    labelPadding: const EdgeInsets.only(left: 20, right: 20),
+                    tabAlignment: TabAlignment.start,
+                    labelPadding: const EdgeInsets.only(
+                      left: 25,
+                    ),
                     controller: _tabController,
                     labelColor: Colors.black,
                     unselectedLabelColor: Colors.grey,
+                    indicatorWeight: 3,
+                    indicatorPadding: EdgeInsets.zero,
+                    padding: EdgeInsets.zero,
                     isScrollable: true,
                     indicatorSize: TabBarIndicatorSize.label,
                     indicator: CircleTabIndicator(
@@ -95,9 +97,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.only(left: 20),
+                  padding: const EdgeInsets.only(left: 15, right: 10, top: 5),
                   height: 300,
-                  width: double.maxFinite,
                   child: TabBarView(
                     controller: _tabController,
                     children: [
@@ -127,7 +128,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         },
                       ),
                       TextList(texts: []),
-                      Text("Bye"),
+                      EmotionsMountainsPage(),
                     ],
                   ),
                 ),
@@ -163,7 +164,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   color: Colors.white,
                                   image: DecorationImage(
                                     image: AssetImage(
-                                        "assets/images/${images2.keys.elementAt(index)}"),
+                                        "assets/images/${images.keys.elementAt(index)}"),
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -171,7 +172,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               const SizedBox(height: 10),
                               Container(
                                 child: AppText(
-                                  text: images2.values.elementAt(index),
+                                  text: images.values.elementAt(index),
                                   color: AppColors.textColor2,
                                 ),
                               ),
