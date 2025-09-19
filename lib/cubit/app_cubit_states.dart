@@ -1,3 +1,5 @@
+// lib/cubit/app_cubit_state.dart
+
 import 'package:equatable/equatable.dart';
 import 'package:travel_app/data_model.dart';
 
@@ -8,26 +10,28 @@ class InitialState extends CubitStates {
   List<Object> get props => [];
 }
 
+class WelcomeState extends CubitStates {
+  @override
+  List<Object> get props => [];
+}
+
 class LoadingState extends CubitStates {
   @override
   List<Object> get props => [];
 }
 
 class LoadedState extends CubitStates {
-  LoadedState(this.places);
   final List<DataModel> places;
+  LoadedState(this.places);
+
   @override
   List<Object> get props => [places];
 }
 
-class DetailPageState extends CubitStates {
-  DetailPageState(this.place);
+class DetailState extends CubitStates {
   final DataModel place;
+  DetailState(this.place);
+
   @override
   List<Object> get props => [place];
-}
-
-class WelcomeState extends CubitStates {
-  @override
-  List<Object> get props => [];
 }

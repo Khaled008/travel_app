@@ -1,3 +1,5 @@
+// lib/model/data_model.dart
+
 class DataModel {
   String name;
   String img;
@@ -19,12 +21,13 @@ class DataModel {
 
   factory DataModel.fromJson(Map<String, dynamic> json) {
     return DataModel(
-        name: json["name"],
-        img: json["img"],
-        price: json["price"],
-        people: json["people"],
-        stars: json["stars"],
-        description: json["description"],
-        location: json["location"]);
+      name: json["name"],
+      img: json["img"],
+      price: json["price"],
+      people: json["people"],
+      stars: json["stars"],
+      description: json["description"],
+      location: json["location"],
+    );
   }
 }

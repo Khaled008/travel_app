@@ -1,8 +1,16 @@
+// lib/pages/main_page.dart
+
 import 'package:flutter/material.dart';
-import 'package:travel_app/pages/navpages/bar_item_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:travel_app/cubit/app_cubit_states.dart';
+import 'package:travel_app/cubit/app_cubits.dart';
+import 'package:travel_app/pages/detail_page.dart';
 import 'package:travel_app/pages/home_page.dart';
+import 'package:travel_app/pages/navpages/bar_item_page.dart';
 import 'package:travel_app/pages/navpages/my_page.dart';
 import 'package:travel_app/pages/navpages/search_page.dart';
+import 'package:travel_app/pages/welcome_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -19,6 +27,7 @@ class _MainPageState extends State<MainPage> {
     MyPage(),
   ];
   int currentIndex = 0;
+
   void onTap(int index) {
     setState(() {
       currentIndex = index;
@@ -27,36 +36,23 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: pages[currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.white,
-          onTap: onTap,
-          currentIndex: currentIndex,
-          selectedItemColor: Colors.black,
-          unselectedItemColor: Colors.grey.withOpacity(0.5),
-          showSelectedLabels: true,
-          showUnselectedLabels: false,
-          elevation: 0,
-          items: [
-            BottomNavigationBarItem(
-              label: ('Home'),
-              icon: Icon(Icons.apps),
-            ),
-            BottomNavigationBarItem(
-              label: ('Bar'),
-              icon: Icon(Icons.bar_chart_sharp),
-            ),
-            BottomNavigationBarItem(
-              label: ('Search'),
-              icon: Icon(Icons.search),
-            ),
-            BottomNavigationBarItem(
-              label: ('My'),
-              icon: Icon(Icons.person),
-            ),
-          ]),
+    return BlocBuilder<AppCubits, CubitStates>(
+      builder: (context, state) {
+        if (state is DetailState) {
+          return DetailPage();
+        }
+        if (state is WelcomeState) {
+          return WelcomePage();
+        }
+        if (state is LoadedState) {
+          return HomePage();
+        }
+        if (state is LoadingState) {
+          return Center(child: CircularProgressIndicator());
+        } else {
+          return Container();
+        }
+      },
     );
   }
 }

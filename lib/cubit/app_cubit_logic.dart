@@ -26,10 +26,8 @@ class _AppCubitLogicsState extends State<AppCubitLogics> {
           );
         } else if (state is LoadedState) {
           return const MainPage();
-        } else if (state is DetailPageState) {
-          return DetailPage(
-            place: state.place,
-          );
+        } else if (state is DetailState) {
+          return const DetailPage();
         } else {
           return const SizedBox.shrink();
         }
